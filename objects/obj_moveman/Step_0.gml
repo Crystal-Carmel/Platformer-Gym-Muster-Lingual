@@ -5,9 +5,49 @@ kLeft = keyboard_check(vk_left);
 kRight = keyboard_check(vk_right);
 kUp = keyboard_check_pressed(vk_up);
 
+// run code
+if (runstop = 0) {
+	var vMove = kRight - kLeft;
+}
+else vMove = 0
+
+if (keyboard_check(vk_shift)) or (runcheck = 1) {
+	runcheck = 1;
+	hsp = hsp + vMove*0.2
+	if (hsp*vMove > 7.5) {
+		hsp = (7.5*vMove);
+	}
+	if (sign(vMove) != sign(hsp)) {
+		runstop = 1;
+		if (place_meeting(x,y+1,obj_inviswall)) {
+			if (sin(hsp) = -1) {
+				hsp = hsp + ffriction;
+				if (hsp > 0) {
+					hsp = 0;
+				}
+			}
+			else {
+				hsp = hsp - ffriction;
+				if (hsp <0) {
+					hsp = 0;
+				}
+			}
+		}
+	}
+}
+else runcheck = 0
+if (hsp = 0) and (runstop = 1) {
+	runstop = 0;
+	runcheck = 0;
+}
+
 // vertical movement
-var vMove = kRight - kLeft;
 vsp = vsp + grav;
+
+// horizontal movemant
+if (runcheck = 0) {
+	hsp = vMove * walksp;
+}
 
 if (place_meeting(x,y+1,obj_inviswall)) and (kUp) {
 	vsp = -jsp 
@@ -54,16 +94,8 @@ if (hsp != 0) image_xscale = sign(hsp);
 if (y > 900 ) {
 	obj_moveman.x = 96;
 	obj_moveman.y = 288;
+	hsp = 0
 }
-// run code
-if (keyboard_check(vk_shift)) {
-	runcheck = 1;
-	hsp = hsp + vMove*0.2
-}
-else runcheck = 0
 
-// horizontal movemant
-if (runcheck = 0) {
-	hsp = vMove * walksp;
-}
+
 	
