@@ -13,14 +13,16 @@ else vMove = 0
 
 if (keyboard_check(vk_shift)) or (runcheck = 1) {
 	runcheck = 1;
-	hsp = hsp + vMove*0.2
-	if (hsp*vMove > 7.5) {
-		hsp = (7.5*vMove);
+	if (place_meeting(x,y+1,obj_inviswall)) {
+	hsp = hsp + vMove*0.2; 
+	}
+	if (hsp*vMove > 10) {
+		hsp = (10*vMove);
 	}
 	if (sign(vMove) != sign(hsp)) {
 		runstop = 1;
 		if (place_meeting(x,y+1,obj_inviswall)) {
-			if (sin(hsp) = -1) {
+			if (sign(hsp) = -1) {
 				hsp = hsp + ffriction;
 				if (hsp > 0) {
 					hsp = 0;
@@ -28,7 +30,7 @@ if (keyboard_check(vk_shift)) or (runcheck = 1) {
 			}
 			else {
 				hsp = hsp - ffriction;
-				if (hsp <0) {
+				if (hsp < 0) {
 					hsp = 0;
 				}
 			}
@@ -82,7 +84,11 @@ if (!place_meeting(x,y+1,obj_inviswall)) {
 	if (hsp = 0) {
 		sprite_index = spr_moveman_idle
 	} else {
-	sprite_index = spr_moveman_walk
+	if (runstop = 1) {
+		sprite_index = spr_moveman_jump
+		image_index = 2
+	}
+	else sprite_index = spr_moveman_walk
 	} if (keyboard_check(vk_shift)) and (hsp != 0) {
 		sprite_index = spr_moveman_run
 	}
