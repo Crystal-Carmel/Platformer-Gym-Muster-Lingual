@@ -14,7 +14,7 @@ else vMove = 0
 if (keyboard_check(vk_shift)) or (runcheck = 1) {
 	runcheck = 1;
 	if (place_meeting(x,y+1,obj_inviswall)) {
-	hsp = hsp + vMove*0.2; 
+	hsp = hsp + hsp * abs(vMove * 0.001 + hsp div 10 - vMove)
 	}
 	if (hsp*vMove > 10) {
 		hsp = (10*vMove);
