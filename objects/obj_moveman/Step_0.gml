@@ -14,12 +14,12 @@ else vMove = 0
 if (keyboard_check(vk_shift)) or (runcheck = 1) {
 	runcheck = 1;
 	if (place_meeting(x,y+1,obj_inviswall)) {
-	hsp = hsp + hsp * abs(vMove * 0.001 + hsp div 10 - vMove)
+		hsp = hsp + vMove*0.2
 	}
-	if (hsp*vMove > 10) {
-		hsp = (10*vMove);
+	if (hsp * vMove > 10) {
+		hsp = (10 * vMove);
 	}
-	if (sign(vMove) != sign(hsp)) {
+	if (sign(vMove) != sign(hsp)) or (keyboard_check_released(vk_shift)) {
 		runstop = 1;
 		if (place_meeting(x,y+1,obj_inviswall)) {
 			if (sign(hsp) = -1) {
@@ -47,7 +47,7 @@ if (hsp = 0) and (runstop = 1) {
 vsp = vsp + grav;
 
 // horizontal movemant
-if (runcheck = 0) {
+if (runcheck = 0) and (runstop = 0) {
 	hsp = vMove * walksp;
 }
 
