@@ -102,6 +102,8 @@ if (y > 900 ) {
 	obj_moveman.y = 288;
 	hsp = 0
 }
-
+if (keyboard_check(vk_space)) {
+	alarm[1] = 1
+}
 
 	

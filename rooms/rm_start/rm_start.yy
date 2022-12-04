@@ -32,10 +32,10 @@
   "creationCodeFile": "",
   "inheritCode": false,
   "instanceCreationOrder": [
+    {"name":"inst_34C0E3F1","path":"rooms/rm_start/rm_start.yy",},
     {"name":"inst_65329566","path":"rooms/rm_start/rm_start.yy",},
     {"name":"inst_35713F5C","path":"rooms/rm_start/rm_start.yy",},
     {"name":"inst_26C5968F","path":"rooms/rm_start/rm_start.yy",},
-    {"name":"inst_34C0E3F1","path":"rooms/rm_start/rm_start.yy",},
     {"name":"inst_697C173F","path":"rooms/rm_start/rm_start.yy",},
     {"name":"inst_1DBB480F","path":"rooms/rm_start/rm_start.yy",},
     {"name":"inst_6FF92800","path":"rooms/rm_start/rm_start.yy",},
