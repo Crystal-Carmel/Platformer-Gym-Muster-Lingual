@@ -7,6 +7,7 @@
     {"id":{"name":"obj_moveman","path":"objects/obj_moveman/obj_moveman.yy",},"order":0,},
     {"id":{"name":"spr_moveman_idle","path":"sprites/spr_moveman_idle/spr_moveman_idle.yy",},"order":0,},
     {"id":{"name":"spr_clouds","path":"sprites/spr_clouds/spr_clouds.yy",},"order":6,},
+    {"id":{"name":"spr_moveman_wallhold","path":"sprites/spr_moveman_wallhold/spr_moveman_wallhold.yy",},"order":9,},
     {"id":{"name":"spr_walls","path":"sprites/spr_walls/spr_walls.yy",},"order":8,},
     {"id":{"name":"spr_moveman_jump","path":"sprites/spr_moveman_jump/spr_moveman_jump.yy",},"order":3,},
     {"id":{"name":"obj_inviswall","path":"objects/obj_inviswall/obj_inviswall.yy",},"order":1,},
