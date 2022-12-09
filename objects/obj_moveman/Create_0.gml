@@ -8,3 +8,5 @@ jsp = 10;
 runcheck = 0;
 runstop = 0;
 ffriction = 0.35;
+walltrue = 0;
+walljumped = 0;

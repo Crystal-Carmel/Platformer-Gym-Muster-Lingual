@@ -42,9 +42,27 @@ if (hsp = 0) and (runstop = 1) {
 	runstop = 0;
 	runcheck = 0;
 }
-
+// walljump
+if (place_meeting(x*vMove+vMove,y+100,obj_inviswall)) and (place_meeting(x*vMove+vMove,y-130,obj_inviswall)) and (vMove != 0) and (walljumped != 1) {
+walltrue = 1;
+sprite_index = spr_moveman_wallhold
+image_speed = 1
+vsp = 0.9
+if (keyboard_check_pressed(vk_up)) {
+	hsp = (8*(vMove-vMove*2))
+	vsp = 8
+	walltrue = 0
+	walljumped = 1;
+}
+}
+else walltrue = 0;
+if (vMove = 0) {
+	walltrue = 0
+}
 // vertical movement
-vsp = vsp + grav;
+if (walltrue != 1) {
+	vsp = vsp + grav;
+}
 
 // horizontal movemant
 if (runcheck = 0) and (runstop = 0) {
@@ -74,12 +92,13 @@ if (place_meeting(x,y+vsp,obj_inviswall)) {
 y = y + vsp;
 
 // animations
-if (!place_meeting(x,y+1,obj_inviswall)) {
+if (walltrue !=1) {
+	if (!place_meeting(x,y+1,obj_inviswall)) {
 	sprite_index = spr_moveman_jump;
 	image_speed = 0;
 	if (vsp > 0) image_index = 2 else
 	if (vsp < -2.4) image_index = 0 else image_index = 1
-} else {
+	} else {
 	image_speed = 1
 	if (hsp = 0) {
 		sprite_index = spr_moveman_idle
@@ -87,13 +106,14 @@ if (!place_meeting(x,y+1,obj_inviswall)) {
 	if (runstop = 1) {
 		sprite_index = spr_moveman_jump
 		image_index = 2
-	}
-	else sprite_index = spr_moveman_walk
-	} if (keyboard_check(vk_shift)) and (hsp != 0) {
-		sprite_index = spr_moveman_run
+		}
+		else sprite_index = spr_moveman_walk
+		} 
+		if (keyboard_check(vk_shift)) and (hsp != 0) {
+			sprite_index = spr_moveman_run
+		}
 	}
 }
-
 if (hsp != 0) image_xscale = sign(hsp);
 
 // oops I fell
@@ -105,5 +125,3 @@ if (y > 900 ) {
 if (keyboard_check(vk_space)) {
 	alarm[1] = 1
 }
-
-	
