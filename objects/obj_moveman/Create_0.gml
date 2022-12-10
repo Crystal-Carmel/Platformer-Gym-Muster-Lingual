@@ -10,3 +10,4 @@ runstop = 0;
 ffriction = 0.35;
 walltrue = 0;
 walljumped = 0;
+walljamped = 0;

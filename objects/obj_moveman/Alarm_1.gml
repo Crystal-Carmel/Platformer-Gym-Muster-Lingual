@@ -1,5 +1,5 @@
-/// @description game ends
-game_end()
+/// @description walljump req
+walljumped = 0;
 
 
 

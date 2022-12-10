@@ -11,7 +11,7 @@ if (runstop = 0) {
 }
 else vMove = 0
 
-if (keyboard_check(vk_shift)) or (runcheck = 1) {
+if (keyboard_check(vk_shift)) and (walltrue != 1) and (walljamped !=1) or (runcheck = 1) {
 	runcheck = 1;
 	if (place_meeting(x,y+1,obj_inviswall)) {
 		hsp = hsp + vMove*0.2
@@ -43,29 +43,43 @@ if (hsp = 0) and (runstop = 1) {
 	runcheck = 0;
 }
 // walljump
-if (place_meeting(x*vMove+vMove,y+100,obj_inviswall)) and (place_meeting(x*vMove+vMove,y-130,obj_inviswall)) and (vMove != 0) and (walljumped != 1) {
+if (place_meeting(x+vMove,y+100,obj_inviswall)) and (place_meeting(x+vMove,y-130,obj_inviswall)) and (vMove != 0) and (walljumped != 1) and (place_meeting(x+vMove,y,obj_inviswall)) {
 walltrue = 1;
 sprite_index = spr_moveman_wallhold
 image_speed = 1
-vsp = 0.9
+vsp = 0.9;
+runcheck = 0;
+runstop = 0;
 if (keyboard_check_pressed(vk_up)) {
 	hsp = (8*(vMove-vMove*2))
-	vsp = 8
+	vsp = -10
 	walltrue = 0
 	walljumped = 1;
+	walljamped = 1;
+	alarm[1] = 5
 }
 }
 else walltrue = 0;
 if (vMove = 0) {
-	walltrue = 0
+	walltrue = 0;
 }
+if (walljamped = 1) {
+	hsp = hsp + vMove * 0.2
+	if (hsp * vMove > 6) {
+		hsp = 6 * vMove
+	}
+}
+if (place_meeting(x,y+1,obj_inviswall)) {
+	walljamped = 0;
+}
+
 // vertical movement
 if (walltrue != 1) {
 	vsp = vsp + grav;
 }
 
 // horizontal movemant
-if (runcheck = 0) and (runstop = 0) {
+if (runcheck = 0) and (runstop = 0) and (walljamped != 1) {
 	hsp = vMove * walksp;
 }
 
@@ -121,7 +135,4 @@ if (y > 900 ) {
 	obj_moveman.x = 96;
 	obj_moveman.y = 288;
 	hsp = 0
-}
-if (keyboard_check(vk_space)) {
-	alarm[1] = 1
 }
