@@ -131,7 +131,7 @@ if (walltrue !=1) {
 if (hsp != 0) image_xscale = sign(hsp);
 
 // oops I fell
-if (y > 900 ) {
+if (y > 1065 ) {
 	obj_moveman.x = 96;
 	obj_moveman.y = 288;
 	hsp = 0
